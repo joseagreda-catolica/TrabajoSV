@@ -1,0 +1,1278 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary: #64748b;
+  --danger: #dc2626;
+  --success: #16a34a;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,.1);
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Layout */
+.app-layout { display: flex; flex-direction: column; min-height: 100vh; }
+.main-content { flex: 1; max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; width: 100%; }
+
+/* Navbar */
+.navbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: .75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: var(--shadow);
+}
+.navbar-brand { font-weight: 700; font-size: 1.1rem; color: var(--primary); text-decoration: none; }
+.navbar-links { display: flex; align-items: center; gap: 1.25rem; list-style: none; margin-left: auto; }
+.navbar-links a { color: var(--text); text-decoration: none; font-size: .9rem; }
+.navbar-links a:hover { color: var(--primary); }
+
+/* Footer */
+.footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 1.25rem;
+  color: var(--text-muted);
+  font-size: .875rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: .5rem 1.25rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  font-size: .875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background .15s;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-secondary { background: var(--border); color: var(--text); }
+.btn-secondary:hover { background: #cbd5e1; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover { background: #b91c1c; }
+.btn-logout { background: none; border: 1px solid var(--border); padding: .375rem 1rem; border-radius: var(--radius); cursor: pointer; font-size: .875rem; }
+
+/* Forms */
+form { display: flex; flex-direction: column; gap: 1rem; }
+label { display: flex; flex-direction: column; gap: .375rem; font-size: .875rem; font-weight: 500; }
+input, select, textarea {
+  padding: .5rem .75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: .9rem;
+  background: var(--surface);
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--primary); border-color: transparent; }
+
+/* Messages */
+.error { color: var(--danger); background: #fef2f2; padding: .75rem 1rem; border-radius: var(--radius); border: 1px solid #fecaca; }
+.mensaje.success { color: var(--success); background: #f0fdf4; padding: .75rem 1rem; border-radius: var(--radius); border: 1px solid #bbf7d0; }
+.mensaje.error { color: var(--danger); background: #fef2f2; padding: .75rem 1rem; border-radius: var(--radius); border: 1px solid #fecaca; }
+
+/* Grids */
+.vacantes-grid, .recursos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+.vacante-card, .recurso-card, .empresa-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  box-shadow: var(--shadow);
+}
+.vacante-card h3, .recurso-card h3 { font-size: 1rem; }
+.vacante-card .empresa, .vacante-card .ubicacion { color: var(--text-muted); font-size: .875rem; }
+
+/* Auth */
+.page-auth { display: flex; justify-content: center; align-items: flex-start; padding-top: 3rem; }
+.auth-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; width: 100%; max-width: 420px; box-shadow: var(--shadow); }
+.auth-card h1 { margin-bottom: 1.5rem; }
+.auth-card p { margin-top: 1rem; text-align: center; font-size: .875rem; }
+
+/* Hero */
+.hero { background: var(--primary); color: #fff; padding: 4rem 2rem; border-radius: var(--radius); text-align: center; margin-bottom: 2rem; }
+.hero h1 { font-size: 2rem; margin-bottom: .75rem; }
+.hero-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; }
+.hero .btn-secondary { background: rgba(255,255,255,.2); color: #fff; border: 1px solid rgba(255,255,255,.4); }
+
+/* Features */
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+.feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
+.feature-card h3 { margin-bottom: .5rem; }
+.feature-card a { display: inline-block; margin-top: 1rem; color: var(--primary); font-weight: 500; }
+
+/* Filters */
+.filtros-form { display: flex; flex-wrap: wrap; gap: .75rem; align-items: flex-end; background: var(--surface); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 1.5rem; }
+.filtros-form input, .filtros-form select { flex: 1; min-width: 160px; }
+
+/* Estados */
+.estado { display: inline-block; padding: .25rem .75rem; border-radius: 999px; font-size: .75rem; font-weight: 600; }
+.estado-activa { background: #dcfce7; color: #166534; }
+.estado-cerrada { background: #f1f5f9; color: #64748b; }
+.estado-pendiente { background: #fef9c3; color: #854d0e; }
+.estado-aceptado { background: #dcfce7; color: #166534; }
+.estado-rechazado { background: #fee2e2; color: #991b1b; }
+
+/* Tabs */
+.tabs { display: flex; gap: .5rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border); }
+.tabs button { padding: .625rem 1.25rem; border: none; background: none; cursor: pointer; font-weight: 500; color: var(--text-muted); border-bottom: 2px solid transparent; margin-bottom: -2px; }
+.tabs button.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+th, td { padding: .75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); font-size: .875rem; }
+th { background: #f8fafc; font-weight: 600; }
+
+/* Stats */
+.estadisticas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; text-align: center; box-shadow: var(--shadow); }
+.stat-card h3 { font-size: 2rem; color: var(--primary); }
+
+/* Postulaciones */
+.postulaciones-list, .temas-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+.postulacion-card, .tema-card, .alerta-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: .5rem; }
+
+/* Loading */
+.loading { text-align: center; padding: 3rem; color: var(--text-muted); }
+
+/* Page sections */
+.vacante-info, .descripcion, .requisitos, .postular-form { margin: 1.5rem 0; }
+.vacante-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .5rem; background: var(--surface); padding: 1.25rem; border-radius: var(--radius); border: 1px solid var(--border); }
+
+/* Empresa header */
+.empresa-header, .comunidad-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+.vacante-actions, .empresa-actions { display: flex; gap: .5rem; margin-top: .5rem; }
+
+
+/* =========================
+   PAGE ADMIN
+========================= */
+
+.page-admin {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-admin h1 {
+  font-size: 2.3rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+/* =========================
+   ESTADISTICAS
+========================= */
+
+.estadisticas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255,255,255,.4);
+
+  border-radius: 20px;
+
+  padding: 1.8rem;
+
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.08);
+
+  transition: all .3s ease;
+}
+
+.stat-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37,99,235,.08),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 20px 40px rgba(15,23,42,.12);
+}
+
+.stat-card h3 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--primary);
+
+  margin-bottom: .3rem;
+}
+
+.stat-card p {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* =========================
+   TABS
+========================= */
+
+.tabs {
+  display: flex;
+  gap: .75rem;
+
+  margin-bottom: 2rem;
+
+  padding: .5rem;
+
+  width: fit-content;
+
+  background: rgba(255,255,255,.7);
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,.5);
+
+  border-radius: 16px;
+}
+
+.tabs button {
+  border: none;
+  background: transparent;
+
+  padding: .85rem 1.3rem;
+
+  border-radius: 12px;
+
+  font-size: .95rem;
+  font-weight: 600;
+
+  color: var(--text-muted);
+
+  cursor: pointer;
+
+  transition: all .25s ease;
+}
+
+.tabs button:hover {
+  background: rgba(37,99,235,.08);
+  color: var(--primary);
+}
+
+.tabs button.active {
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    #4f46e5
+  );
+
+  color: white;
+
+  box-shadow:
+    0 10px 25px rgba(37,99,235,.25);
+}
+
+/* =========================
+   TABLA USUARIOS
+========================= */
+
+.usuarios-table {
+  overflow-x: auto;
+
+  background: rgba(255,255,255,.75);
+
+  backdrop-filter: blur(12px);
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(255,255,255,.4);
+
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.08);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: rgba(248,250,252,.9);
+}
+
+th {
+  padding: 1rem;
+
+  text-align: left;
+
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+
+  color: var(--text-muted);
+
+  font-weight: 700;
+}
+
+td {
+  padding: 1rem;
+
+  border-top: 1px solid rgba(226,232,240,.7);
+
+  font-size: .95rem;
+}
+
+tbody tr {
+  transition: all .25s ease;
+}
+
+tbody tr:hover {
+  background: rgba(37,99,235,.04);
+}
+
+/* =========================
+   EMPRESAS
+========================= */
+
+.empresas-list {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.empresa-card {
+  background: rgba(255,255,255,.75);
+
+  backdrop-filter: blur(12px);
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(255,255,255,.4);
+
+  padding: 1.5rem;
+
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.08);
+
+  transition: all .3s ease;
+}
+
+.empresa-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 20px 40px rgba(15,23,42,.12);
+}
+
+.empresa-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: .4rem;
+}
+
+.empresa-card p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+  border: none;
+
+  border-radius: 12px;
+
+  padding: .75rem 1.2rem;
+
+  font-size: .92rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all .25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    #4f46e5
+  );
+
+  color: white;
+
+  box-shadow:
+    0 10px 25px rgba(37,99,235,.25);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: #cbd5e1;
+}
+
+.btn-danger {
+  background: linear-gradient(
+    135deg,
+    #ef4444,
+    #dc2626
+  );
+
+  color: white;
+
+  box-shadow:
+    0 10px 25px rgba(220,38,38,.2);
+}
+
+.btn-danger:hover {
+  filter: brightness(1.05);
+}
+
+.empresa-actions {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading {
+  padding: 3rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .page-admin {
+    padding: 1rem;
+  }
+
+  .page-admin h1 {
+    font-size: 1.8rem;
+  }
+
+  .tabs {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .tabs button {
+    white-space: nowrap;
+  }
+
+  th,
+  td {
+    padding: .85rem;
+    font-size: .85rem;
+  }
+
+  .stat-card h3 {
+    font-size: 2rem;
+  }
+
+}
+
+
+/* =========================
+   PAGE EMPRESA
+========================= */
+
+.page-empresa {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.empresa-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  margin-bottom: 2rem;
+}
+
+.empresa-header h1 {
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+/* =========================
+   MENSAJES
+========================= */
+
+.mensaje {
+  margin-bottom: 1.5rem;
+
+  padding: 1rem 1.2rem;
+
+  border-radius: 16px;
+
+  font-weight: 600;
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid transparent;
+
+  animation: fadeIn .3s ease;
+}
+
+.mensaje.success {
+  background: rgba(22,163,74,.1);
+  border-color: rgba(22,163,74,.2);
+  color: #166534;
+}
+
+.mensaje.error {
+  background: rgba(220,38,38,.1);
+  border-color: rgba(220,38,38,.2);
+  color: #991b1b;
+}
+
+/* =========================
+   FORMULARIO VACANTE
+========================= */
+
+.form-vacante {
+  background: rgba(255,255,255,.75);
+
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,.4);
+
+  border-radius: 24px;
+
+  padding: 2rem;
+
+  margin-bottom: 2rem;
+
+  box-shadow:
+    0 15px 35px rgba(15,23,42,.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  animation: fadeUp .35s ease;
+}
+
+.form-vacante h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+
+.form-vacante label {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+
+  font-size: .95rem;
+  font-weight: 600;
+
+  color: var(--text);
+}
+
+.form-vacante input,
+.form-vacante textarea,
+.form-vacante select {
+  width: 100%;
+
+  padding: .9rem 1rem;
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(203,213,225,.8);
+
+  background: rgba(255,255,255,.85);
+
+  font-size: .95rem;
+
+  transition: all .25s ease;
+}
+
+.form-vacante input:focus,
+.form-vacante textarea:focus,
+.form-vacante select:focus {
+  outline: none;
+
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 0 4px rgba(37,99,235,.12);
+}
+
+.form-vacante textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* =========================
+   VACANTES
+========================= */
+
+.mis-vacantes h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+
+  margin-bottom: 1.5rem;
+}
+
+.vacantes-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(320px, 1fr));
+
+  gap: 1.5rem;
+}
+
+/* =========================
+   CARD VACANTE
+========================= */
+
+.vacante-card {
+  position: relative;
+
+  background: rgba(255,255,255,.75);
+
+  backdrop-filter: blur(12px);
+
+  border-radius: 22px;
+
+  border: 1px solid rgba(255,255,255,.4);
+
+  padding: 1.5rem;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.08);
+
+  transition: all .3s ease;
+
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+
+.vacante-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37,99,235,.06),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+.vacante-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 20px 45px rgba(15,23,42,.14);
+}
+
+.vacante-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  color: var(--text);
+}
+
+.vacante-card p {
+  color: var(--text-muted);
+  font-size: .95rem;
+}
+
+/* =========================
+   ESTADOS
+========================= */
+
+.estado {
+  width: fit-content;
+
+  padding: .45rem .9rem;
+
+  border-radius: 999px;
+
+  font-size: .8rem;
+  font-weight: 700;
+
+  text-transform: capitalize;
+}
+
+.estado-activa {
+  background: rgba(22,163,74,.12);
+  color: #15803d;
+}
+
+.estado-cerrada {
+  background: rgba(148,163,184,.16);
+  color: #475569;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.vacante-actions {
+  display: flex;
+  gap: .75rem;
+
+  margin-top: auto;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+  border: none;
+
+  border-radius: 14px;
+
+  padding: .8rem 1.25rem;
+
+  font-size: .92rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all .25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      #4f46e5
+    );
+
+  color: white;
+
+  box-shadow:
+    0 12px 24px rgba(37,99,235,.25);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: #cbd5e1;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.vacantes-grid > p {
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  padding: 3rem;
+
+  border-radius: 20px;
+
+  background: rgba(255,255,255,.6);
+
+  color: var(--text-muted);
+
+  font-weight: 500;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .page-empresa {
+    padding: 1rem;
+  }
+
+  .empresa-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .empresa-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .form-vacante {
+    padding: 1.5rem;
+  }
+
+  .vacantes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vacante-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+}
+
+/* =========================
+   PAGE DETALLE VACANTE
+========================= */
+
+.page-detalle-vacante {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.page-detalle-vacante h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+
+  margin-bottom: 2rem;
+
+  letter-spacing: -0.04em;
+
+  color: var(--text);
+}
+
+/* =========================
+   INFO CARD
+========================= */
+
+.vacante-info {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 1rem;
+
+  margin-bottom: 2rem;
+
+  padding: 1.8rem;
+
+  background: rgba(255,255,255,.75);
+
+  backdrop-filter: blur(14px);
+
+  border-radius: 24px;
+
+  border: 1px solid rgba(255,255,255,.4);
+
+  box-shadow:
+    0 15px 35px rgba(15,23,42,.08);
+}
+
+.vacante-info p {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+
+  padding: 1rem;
+
+  border-radius: 16px;
+
+  background: rgba(248,250,252,.7);
+
+  color: var(--text-muted);
+
+  font-size: .95rem;
+
+  transition: all .25s ease;
+}
+
+.vacante-info p:hover {
+  background: rgba(37,99,235,.06);
+}
+
+.vacante-info strong {
+  color: var(--text);
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+/* =========================
+   CONTENT SECTIONS
+========================= */
+
+.descripcion,
+.requisitos,
+.postular-form {
+  margin-bottom: 2rem;
+
+  padding: 2rem;
+
+  background: rgba(255,255,255,.75);
+
+  backdrop-filter: blur(14px);
+
+  border-radius: 24px;
+
+  border: 1px solid rgba(255,255,255,.4);
+
+  box-shadow:
+    0 15px 35px rgba(15,23,42,.08);
+
+  animation: fadeUp .35s ease;
+}
+
+.descripcion h2,
+.requisitos h2,
+.postular-form h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  margin-bottom: 1rem;
+
+  color: var(--text);
+}
+
+.descripcion p,
+.requisitos p {
+  color: var(--text-muted);
+
+  line-height: 1.8;
+
+  white-space: pre-line;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.postular-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.postular-form label {
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+
+  font-weight: 600;
+
+  color: var(--text);
+}
+
+.postular-form textarea {
+  width: 100%;
+
+  padding: 1rem 1.1rem;
+
+  border-radius: 16px;
+
+  border: 1px solid rgba(203,213,225,.8);
+
+  background: rgba(255,255,255,.9);
+
+  resize: vertical;
+
+  min-height: 160px;
+
+  font-size: .95rem;
+
+  transition: all .25s ease;
+}
+
+.postular-form textarea:focus {
+  outline: none;
+
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 0 4px rgba(37,99,235,.12);
+}
+
+.postular-form textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+  border: none;
+
+  border-radius: 14px;
+
+  padding: .9rem 1.4rem;
+
+  font-size: .95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all .25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      #4f46e5
+    );
+
+  color: white;
+
+  box-shadow:
+    0 12px 24px rgba(37,99,235,.25);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+/* =========================
+   MENSAJES
+========================= */
+
+.mensaje {
+  margin-bottom: 1.5rem;
+
+  padding: 1rem 1.2rem;
+
+  border-radius: 16px;
+
+  font-weight: 600;
+
+  border: 1px solid transparent;
+
+  animation: fadeIn .3s ease;
+}
+
+.mensaje.success {
+  background: rgba(22,163,74,.1);
+  border-color: rgba(22,163,74,.2);
+  color: #166534;
+}
+
+.mensaje.error {
+  background: rgba(220,38,38,.1);
+  border-color: rgba(220,38,38,.2);
+  color: #991b1b;
+}
+
+/* =========================
+   YA POSTULADO
+========================= */
+
+.postular-form > p {
+  padding: 1rem 1.2rem;
+
+  border-radius: 16px;
+
+  background: rgba(22,163,74,.08);
+
+  color: #15803d;
+
+  font-weight: 600;
+}
+
+/* =========================
+   LOGIN MESSAGE
+========================= */
+
+.page-detalle-vacante > p:last-child {
+  margin-top: 2rem;
+
+  text-align: center;
+
+  padding: 1.5rem;
+
+  border-radius: 18px;
+
+  background: rgba(255,255,255,.65);
+
+  color: var(--text-muted);
+}
+
+.page-detalle-vacante a {
+  color: var(--primary);
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.page-detalle-vacante a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .page-detalle-vacante {
+    padding: 1rem;
+  }
+
+  .page-detalle-vacante h1 {
+    font-size: 2rem;
+  }
+
+  .vacante-info {
+    grid-template-columns: 1fr;
+    padding: 1.2rem;
+  }
+
+  .descripcion,
+  .requisitos,
+  .postular-form {
+    padding: 1.5rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+}
