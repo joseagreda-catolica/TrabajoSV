@@ -248,3 +248,273 @@ body {
 /* ── Mensajes ────────────────────────────────────────── */
 .ts-alert-success { color: #166534; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 0.75rem 1rem; }
 .ts-alert-error   { color: #991b1b; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 0.75rem 1rem; }
+
+/* ── Página Recursos ─────────────────────────────────── */
+.page-recursos {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.page-recursos h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ts-blue);
+  margin-bottom: 12px;
+}
+.page-recursos > p {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+.recursos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.recurso-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-left: 4px solid var(--ts-accent);
+}
+.recurso-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ts-blue);
+  margin-bottom: 8px;
+}
+.recurso-card p {
+  color: #555;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.recurso-card a {
+  display: inline-block;
+  color: var(--ts-blue);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: var(--ts-beige);
+  transition: background 0.2s;
+}
+.recurso-card a:hover {
+  background: var(--ts-accent);
+  color: white;
+}
+
+/* ── Página Comunidad/Foro ────────────────────────────── */
+.page-comunidad {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.comunidad-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.comunidad-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ts-blue);
+}
+.form-nuevo-tema {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.form-nuevo-tema label {
+  display: block;
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: var(--ts-blue);
+}
+.form-nuevo-tema input,
+.form-nuevo-tema textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  margin-top: 6px;
+}
+.form-nuevo-tema input:focus,
+.form-nuevo-tema textarea:focus {
+  outline: none;
+  border-color: var(--ts-blue);
+  box-shadow: 0 0 0 3px rgba(46, 50, 102, 0.1);
+}
+.form-nuevo-tema button {
+  background: var(--ts-blue);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.form-nuevo-tema button:hover {
+  background: #252a55;
+}
+.temas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tema-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border-left: 4px solid var(--ts-accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+.tema-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+.tema-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ts-blue);
+  margin-bottom: 8px;
+}
+.tema-card p {
+  color: #666;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.tema-card small {
+  color: #999;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 12px;
+}
+.tema-card a {
+  display: inline-block;
+  color: var(--ts-blue);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--ts-beige);
+  transition: background 0.2s;
+}
+.tema-card a:hover {
+  background: var(--ts-accent);
+  color: white;
+}
+
+/* ── Página Alertas de Vacantes ───────────────────────── */
+.page-alertas {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.page-alertas h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ts-blue);
+  margin-bottom: 12px;
+}
+.page-alertas > p {
+  color: #666;
+  margin-bottom: 30px;
+}
+.nueva-alerta,
+.mis-alertas {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.nueva-alerta h2,
+.mis-alertas h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ts-blue);
+  margin-bottom: 16px;
+}
+.nueva-alerta form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  align-items: end;
+}
+.nueva-alerta label,
+.nueva-alerta select {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: var(--ts-blue);
+  font-size: 0.9rem;
+}
+.nueva-alerta input,
+.nueva-alerta select {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  margin-top: 6px;
+  background: white;
+}
+.nueva-alerta input:focus,
+.nueva-alerta select:focus {
+  outline: none;
+  border-color: var(--ts-blue);
+  box-shadow: 0 0 0 3px rgba(46, 50, 102, 0.1);
+}
+.nueva-alerta button {
+  padding: 10px 24px;
+  background: var(--ts-blue);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.nueva-alerta button:hover {
+  background: #252a55;
+}
+.alerta-card {
+  background: var(--ts-beige);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.alerta-card p {
+  margin: 0;
+  color: var(--ts-blue);
+}
+.alerta-card p strong {
+  font-weight: 600;
+}
+.alerta-card .btn-danger {
+  background: #ef4444;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+.alerta-card .btn-danger:hover {
+  background: #dc2626;
+}
