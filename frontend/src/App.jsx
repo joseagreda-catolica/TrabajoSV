@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import Empleos from './pages/Empleos'
 import DetalleVacante from './pages/DetalleVacante'
 import Recursos from './pages/Recursos'
+import DetalleRecurso from './pages/DetalleRecurso'
 import Comunidad from './pages/Comunidad'
 import DetalleTema from './pages/DetalleTema'
 import Login from './pages/Login'
@@ -35,6 +36,7 @@ export default function App() {
               <Route path="/empleos" element={<Empleos />} />
               <Route path="/vacante/:id" element={<DetalleVacante />} />
               <Route path="/recursos" element={<Recursos />} />
+              <Route path="/recurso/:id" element={<DetalleRecurso />} />
               <Route path="/comunidad" element={<Comunidad />} />
               <Route path="/comunidad/:id" element={<DetalleTema />} />
               <Route path="/login" element={<Login />} />
