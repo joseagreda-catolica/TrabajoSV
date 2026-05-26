@@ -82,8 +82,8 @@ router.post('/vacantes', apiAuth, apiRole('empresa'), async (req, res) => {
       id_empresa:        empresa.id_empresa,
       titulo:            req.body.titulo,
       descripcion:       req.body.descripcion       || null,
-      ubicacion:         req.body.ubicacion          || null,
-      tipo_contrato:     req.body.tipo_contrato      || 'tiempo_completo',
+      ubicacion:         req.body.ubicacion         || null,
+      tipo_contrato:     req.body.tipo_contrato     || 'tiempo_completo',
       salario_min:       salarioMin,
       salario_max:       salarioMax,
       nivel_experiencia: req.body.nivel_experiencia  || 'junior',
@@ -141,11 +141,12 @@ router.delete('/vacantes/:id', apiAuth, apiRole('empresa'), async (req, res) => 
 
     const vacante = await Vacante.buscarPorId(req.params.id);
     if (!vacante) return res.status(404).json({ ok: false, message: 'Vacante no encontrada' });
+
     if (vacante.id_empresa !== empresa.id_empresa)
       return res.status(403).json({ ok: false, message: 'Sin permisos para eliminar esta vacante' });
 
     await Vacante.eliminar(req.params.id);
-    res.json({ ok: true, message: 'Vacante eliminada' });
+    res.json({ ok: true, message: 'Vacante eliminada exitosamente' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ ok: false, message: 'Error al eliminar vacante' });
