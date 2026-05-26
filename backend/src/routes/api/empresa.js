@@ -192,6 +192,12 @@ router.put('/postulaciones/:id', apiAuth, apiRole('empresa'), async (req, res) =
     }
 
     await Postulacion.actualizarEstado(req.params.id, req.body.estado);
+
+    // Si se marca como contratado, cerrar la vacante
+    if (req.body.estado === 'contratado') {
+      await Vacante.actualizarEstado(postulacion.id_vacante, 'cerrada');
+    }
+
     res.json({ ok: true, message: 'Estado actualizado' });
   } catch (err) {
     console.error(err);

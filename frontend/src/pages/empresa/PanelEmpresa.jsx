@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { empresaAPI } from '../../api'
+import { empresaAPI, valoracionesAPI } from '../../api'
 
 const ESTADO_LABELS = {
   enviada:     'Enviada',
@@ -37,6 +37,9 @@ export default function PanelEmpresa() {
   const [aplicantes,        setAplicantes]        = useState([])
   const [loadingAplicantes, setLoadingAplicantes] = useState(false)
 
+  const [valoraciones, setValoraciones] = useState([])
+  const [promedio, setPromedio] = useState(null)
+
   function cargarPanel() {
     return empresaAPI.panel().then(({ data }) => {
       setEmpresa(data.empresa)
@@ -50,6 +53,13 @@ export default function PanelEmpresa() {
         sitio_web:      data.empresa?.sitio_web      || '',
         descripcion:    data.empresa?.descripcion    || '',
       })
+
+      if (data.empresa?.id_empresa) {
+        return valoracionesAPI.obtener(data.empresa.id_empresa).then(({ data: ratingsData }) => {
+          setValoraciones(ratingsData.valoraciones || [])
+          setPromedio(ratingsData.promedio?.promedio || null)
+        }).catch(() => {})
+      }
     })
   }
 
@@ -108,6 +118,14 @@ export default function PanelEmpresa() {
     try {
       await empresaAPI.actualizarPostulacion(idPost, estado)
       setAplicantes(prev => prev.map(p => p.id_postulacion === idPost ? { ...p, estado } : p))
+
+      // Si se contrata a alguien, cerrar la vacante
+      if (estado === 'contratado' && vacanteModal) {
+        setVacantes(prev => prev.map(v =>
+          v.id_vacante === vacanteModal.id_vacante ? { ...v, estado: 'cerrada' } : v
+        ))
+        setMensaje({ tipo: 'success', texto: 'Candidato contratado y vacante cerrada' })
+      }
     } catch {
       setMensaje({ tipo: 'danger', texto: 'Error al actualizar estado' })
     }
@@ -345,6 +363,66 @@ export default function PanelEmpresa() {
                     </div>
                   )}
                 </div>
+              </section>
+
+              <section className="bg-white p-4 mb-4 shadow-sm" style={{ borderRadius: 4 }}>
+                <h5 className="fw-bold mb-4" style={{ color: '#2c3e60' }}>
+                  <i className="bi bi-star-fill me-2" style={{ color: '#ffc107' }}></i>Valoraciones
+                </h5>
+
+                {promedio !== null && (
+                  <div className="mb-4 p-3 rounded-3" style={{ background: '#fffbf0' }}>
+                    <div className="d-flex align-items-center gap-3">
+                      <div className="text-center">
+                        <h3 className="fw-bold mb-1" style={{ color: '#2c3e60', fontSize: '2rem' }}>
+                          {typeof promedio === 'number' ? promedio.toFixed(1) : '—'}
+                        </h3>
+                        <div style={{ color: '#ffc107', fontSize: '1.2rem' }}>
+                          {'★'.repeat(Math.round(promedio || 0))}
+                          {'☆'.repeat(5 - Math.round(promedio || 0))}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-muted mb-0">
+                          <strong>{valoraciones.length}</strong> valoración{valoraciones.length !== 1 ? 'es' : ''}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {valoraciones.length === 0 ? (
+                  <p className="text-muted text-center py-4">
+                    <i className="bi bi-chat-dots fs-1 d-block mb-2"></i>
+                    Aún no hay valoraciones de candidatos.
+                  </p>
+                ) : (
+                  <div className="space-y-3">
+                    {valoraciones.map(v => (
+                      <div key={v.id_valoracion} className="border rounded-2 p-3" style={{ background: '#fafaf8' }}>
+                        <div className="d-flex justify-content-between align-items-start mb-2">
+                          <div>
+                            <p className="fw-semibold mb-1" style={{ color: '#2c3e60' }}>
+                              {v.nombre} {v.apellido}
+                            </p>
+                            <div style={{ color: '#ffc107', fontSize: '0.9rem' }}>
+                              {'★'.repeat(v.puntuacion)}
+                              {'☆'.repeat(5 - v.puntuacion)}
+                            </div>
+                          </div>
+                          <small className="text-muted">
+                            {new Date(v.fecha).toLocaleDateString('es-SV')}
+                          </small>
+                        </div>
+                        {v.comentario && (
+                          <p className="text-secondary small mb-0" style={{ fontSize: '0.9rem' }}>
+                            "{v.comentario}"
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </section>
             </>
           )}

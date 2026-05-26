@@ -85,6 +85,10 @@ const Vacante = {
     );
   },
 
+  async actualizarEstado(id, estado) {
+    await pool.execute('UPDATE vacante SET estado = ? WHERE id_vacante = ?', [estado, id]);
+  },
+
   async eliminar(id) {
     await pool.execute('DELETE FROM vacante WHERE id_vacante = ?', [id]);
   },

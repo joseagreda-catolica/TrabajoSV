@@ -21,6 +21,17 @@ router.get('/:id_empresa', async (req, res) => {
 // Enviar valoración (candidato)
 router.post('/:id_empresa', apiAuth, apiRole('candidato'), async (req, res) => {
   try {
+    const { puntuacion, comentario } = req.body;
+
+    if (!puntuacion) {
+      return res.status(400).json({ ok: false, message: 'La puntuación es requerida' });
+    }
+
+    const puntuacionNum = parseInt(puntuacion);
+    if (isNaN(puntuacionNum) || puntuacionNum < 1 || puntuacionNum > 5) {
+      return res.status(400).json({ ok: false, message: 'La puntuación debe ser entre 1 y 5' });
+    }
+
     const candidato = await Candidato.buscarPorUsuario(req.session.user.id);
     if (!candidato) return res.status(400).json({ ok: false, message: 'Completa tu perfil de candidato primero' });
 
@@ -30,21 +41,16 @@ router.post('/:id_empresa', apiAuth, apiRole('candidato'), async (req, res) => {
       return res.status(409).json({ ok: false, message: 'Ya has valorado esta empresa' });
     }
 
-    const puntuacion = parseInt(req.body.puntuacion);
-    if (!puntuacion || puntuacion < 1 || puntuacion > 5) {
-      return res.status(400).json({ ok: false, message: 'La puntuación debe ser entre 1 y 5' });
-    }
-
     await Valoracion.crear({
       id_empresa:   req.params.id_empresa,
       id_candidato: candidato.id_candidato,
-      puntuacion,
-      comentario:   req.body.comentario || null
+      puntuacion: puntuacionNum,
+      comentario:   comentario || null
     });
 
-    res.status(201).json({ ok: true, message: 'Valoración enviada. Será revisada antes de publicarse.' });
+    res.status(201).json({ ok: true, message: 'Valoración publicada exitosamente.' });
   } catch (err) {
-    console.error(err);
+    console.error('Error en valoraciones:', err);
     res.status(500).json({ ok: false, message: 'Error al enviar valoración' });
   }
 });

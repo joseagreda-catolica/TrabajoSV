@@ -20,6 +20,19 @@ router.get('/perfil', apiAuth, apiRole('candidato'), async (req, res) => {
   }
 });
 
+router.get('/postulaciones', apiAuth, apiRole('candidato'), async (req, res) => {
+  try {
+    const candidato    = await Candidato.buscarPorUsuario(req.session.user.id);
+    const postulaciones = candidato
+      ? await Postulacion.buscarPorCandidato(candidato.id_candidato)
+      : [];
+    res.json({ ok: true, postulaciones });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ ok: false, message: 'Error al obtener postulaciones' });
+  }
+});
+
 router.put('/perfil', apiAuth, apiRole('candidato'), async (req, res) => {
   try {
     const candidato = await Candidato.buscarPorUsuario(req.session.user.id);

@@ -58,6 +58,14 @@ export const adminAPI = {
   aprobarEmpresa:     (id)   => api.put(`/admin/empresas/${id}/aprobar`),
   rechazarEmpresa:    (id)   => api.put(`/admin/empresas/${id}/rechazar`),
   estadisticas:       ()     => api.get('/admin/estadisticas'),
+  moderacion:         ()     => api.get('/admin/moderacion'),
+  aprobarValoracion:  (id)   => api.put(`/admin/valoraciones/${id}/aprobar`),
+  rechazarValoracion: (id)   => api.delete(`/admin/valoraciones/${id}`),
+}
+
+export const valoracionesAPI = {
+  obtener:    (idEmpresa) => api.get(`/valoraciones/${idEmpresa}`),
+  crear:      (idEmpresa, data) => api.post(`/valoraciones/${idEmpresa}`, data),
 }
 
 export default api

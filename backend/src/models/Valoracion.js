@@ -11,7 +11,7 @@ const Valoracion = {
 
   async crear(datos) {
     const [result] = await pool.execute(
-      'INSERT INTO valoracion (id_empresa, id_candidato, puntuacion, comentario) VALUES (?, ?, ?, ?)',
+      'INSERT INTO valoracion (id_empresa, id_candidato, puntuacion, comentario, aprobada) VALUES (?, ?, ?, ?, 1)',
       [datos.id_empresa, datos.id_candidato, datos.puntuacion, datos.comentario || null]
     );
     return result.insertId;
@@ -47,6 +47,14 @@ const Valoracion = {
 
   async eliminar(idValoracion) {
     await pool.execute('DELETE FROM valoracion WHERE id_valoracion = ?', [idValoracion]);
+  },
+
+  async obtenerPromedio(idEmpresa) {
+    const [rows] = await pool.execute(
+      'SELECT AVG(puntuacion) as promedio, COUNT(*) as total FROM valoracion WHERE id_empresa = ? AND aprobada = 1',
+      [idEmpresa]
+    );
+    return rows[0] || { promedio: 0, total: 0 };
   }
 };
 

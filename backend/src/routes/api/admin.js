@@ -11,7 +11,7 @@ const adminAuth = [apiAuth, apiRole('admin')];
 
 // ── Estadísticas ──────────────────────────────────────────────────────────────
 
-router.get('/stats', ...adminAuth, async (req, res) => {
+router.get('/estadisticas', ...adminAuth, async (req, res) => {
   try {
     const [totalUsuarios, totalEmpresas, totalVacantes, totalPostulaciones] = await Promise.all([
       Usuario.contar(),
@@ -19,10 +19,16 @@ router.get('/stats', ...adminAuth, async (req, res) => {
       Vacante.contar(),
       Postulacion.contar()
     ]);
-    res.json({ ok: true, stats: { totalUsuarios, totalEmpresas, totalVacantes, totalPostulaciones } });
+    res.json({
+      ok: true,
+      total_usuarios: totalUsuarios,
+      total_empresas: totalEmpresas,
+      total_vacantes: totalVacantes,
+      total_postulaciones: totalPostulaciones
+    });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ ok: false, message: 'Error al obtener stats' });
+    res.status(500).json({ ok: false, message: 'Error al obtener estadísticas' });
   }
 });
 
@@ -64,6 +70,16 @@ router.get('/empresas', ...adminAuth, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ ok: false, message: 'Error al obtener empresas' });
+  }
+});
+
+router.get('/empresas/pendientes', ...adminAuth, async (req, res) => {
+  try {
+    const empresas = await Empresa.listarTodas();
+    res.json({ ok: true, empresas });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ ok: false, message: 'Error al obtener empresas pendientes' });
   }
 });
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { adminAPI } from '../../api'
+import { adminAPI, valoracionesAPI } from '../../api'
 
 const STATS_CONFIG = [
   { key: 'total_usuarios',      label: 'Total Usuarios',    icon: 'bi-people-fill',    bg: '#eef2ff', color: '#2e3266'  },
@@ -29,9 +29,13 @@ export default function PanelAdmin() {
         setEmpresas(e.data.empresas || [])
         setStats(s.data)
       })
-      .catch(() => setMensaje({ tipo: 'danger', texto: 'Error cargando información' }))
+      .catch(err => {
+        console.error(err);
+        setMensaje({ tipo: 'danger', texto: 'Error cargando información' })
+      })
       .finally(() => setLoading(false))
   }, [])
+
 
   async function toggleUsuario(id) {
     try {
@@ -61,6 +65,7 @@ export default function PanelAdmin() {
       setMensaje({ tipo: 'danger', texto: 'Error al rechazar empresa' })
     }
   }
+
 
   const topbarTitle = {
     dashboard: { title: 'Dashboard',              sub: 'Resumen general del sistema'               },
@@ -326,6 +331,7 @@ export default function PanelAdmin() {
                   </div>
                 </div>
               )}
+
             </>
           )}
         </div>

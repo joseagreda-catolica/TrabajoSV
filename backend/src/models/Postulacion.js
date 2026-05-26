@@ -11,7 +11,7 @@ const Postulacion = {
 
   async buscarPorCandidato(idCandidato) {
     const [rows] = await pool.execute(
-      `SELECT p.*, v.titulo, v.ubicacion, e.nombre_empresa
+      `SELECT p.*, v.titulo, v.ubicacion, v.id_empresa, e.nombre_empresa
        FROM postulacion p
        JOIN vacante v ON p.id_vacante = v.id_vacante
        JOIN empresa e ON v.id_empresa = e.id_empresa
