@@ -40,10 +40,10 @@ export const empresaAPI = {
 }
 
 export const forosAPI = {
-  listar:     (params) => api.get('/foros', { params }),
-  detalle:    (id)     => api.get(`/foros/${id}`),
-  crear:      (data)   => api.post('/foros', data),
-  responder:  (id, data) => api.post(`/foros/${id}/respuestas`, data),
+  listar:     (params) => api.get('/foros/temas', { params }),
+  detalle:    (id)     => api.get(`/foros/temas/${id}`),
+  crear:      (data)   => api.post('/foros/temas', data),
+  responder:  (id, data) => api.post(`/foros/temas/${id}/responder`, data),
 }
 
 export const recursosAPI = {
