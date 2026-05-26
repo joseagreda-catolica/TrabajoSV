@@ -12,4 +12,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Obtener detalle de un recurso específico (público)
+router.get('/:id', async (req, res) => {
+  try {
+    const recurso = await Recurso.buscarPorId(req.params.id);
+    if (!recurso) return res.status(404).json({ ok: false, message: 'Recurso no encontrado' });
+    res.json({ ok: true, recurso });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ ok: false, message: 'Error al obtener recurso' });
+  }
+});
+
 module.exports = router;
