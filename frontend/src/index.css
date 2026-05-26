@@ -518,3 +518,139 @@ body {
 .alerta-card .btn-danger:hover {
   background: #dc2626;
 }
+
+/* ── Página Detalle Tema ──────────────────────────────── */
+.page-detalle-tema {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.tema-header {
+  margin-bottom: 30px;
+}
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--ts-blue);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+.btn-back:hover {
+  color: #252a55;
+}
+.tema-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ts-blue);
+  margin: 0;
+}
+.tema-info {
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 30px;
+  color: #666;
+}
+.respuestas-container h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--ts-blue);
+  margin-bottom: 20px;
+}
+.respuestas-list {
+  margin-bottom: 30px;
+}
+.respuesta-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s;
+}
+.respuesta-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.respuesta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.respuesta-header strong {
+  color: var(--ts-blue);
+  font-weight: 600;
+}
+.respuesta-header small {
+  color: #999;
+  font-size: 0.85rem;
+}
+.respuesta-contenido {
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+}
+.no-respuestas {
+  text-align: center;
+  color: #999;
+  padding: 30px;
+  font-style: italic;
+}
+.form-respuesta {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.form-respuesta h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ts-blue);
+  margin-bottom: 16px;
+}
+.form-respuesta textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+.form-respuesta textarea:focus {
+  outline: none;
+  border-color: var(--ts-blue);
+  box-shadow: 0 0 0 3px rgba(46, 50, 102, 0.1);
+}
+.form-respuesta button {
+  background: var(--ts-blue);
+  color: white;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.form-respuesta button:hover:not(:disabled) {
+  background: #252a55;
+}
+.form-respuesta button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.auth-prompt {
+  background: var(--ts-beige);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  color: var(--ts-blue);
+  font-weight: 600;
+}

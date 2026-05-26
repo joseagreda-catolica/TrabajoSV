@@ -9,6 +9,7 @@ import Empleos from './pages/Empleos'
 import DetalleVacante from './pages/DetalleVacante'
 import Recursos from './pages/Recursos'
 import Comunidad from './pages/Comunidad'
+import DetalleTema from './pages/DetalleTema'
 import Login from './pages/Login'
 import Registro from './pages/Registro'
 import PerfilUsuario from './pages/usuario/PerfilUsuario'
@@ -35,6 +36,7 @@ export default function App() {
               <Route path="/vacante/:id" element={<DetalleVacante />} />
               <Route path="/recursos" element={<Recursos />} />
               <Route path="/comunidad" element={<Comunidad />} />
+              <Route path="/comunidad/:id" element={<DetalleTema />} />
               <Route path="/login" element={<Login />} />
               <Route path="/registro" element={<Registro />} />
 

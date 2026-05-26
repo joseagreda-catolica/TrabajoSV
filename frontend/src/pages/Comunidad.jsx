@@ -67,11 +67,11 @@ export default function Comunidad() {
 
       <div className="temas-list">
         {temas.map(t => (
-          <div key={t.id_foro || t.id} className="tema-card">
+          <div key={t.id_tema} className="tema-card">
             <h3>{t.titulo}</h3>
             <p>{t.contenido?.substring(0, 150)}...</p>
-            <small>Por: {t.nombre_autor || t.autor} · {new Date(t.fecha_creacion || t.fecha).toLocaleDateString()}</small>
-            <Link to={`/comunidad/${t.id_foro || t.id}`}>Ver discusión</Link>
+            <small>Por: {t.nombre || t.nombre_autor} {t.apellido} · {new Date(t.fecha_creacion).toLocaleDateString()}</small>
+            <Link to={`/comunidad/${t.id_tema}`}>Ver discusión</Link>
           </div>
         ))}
         {!loading && temas.length === 0 && (
