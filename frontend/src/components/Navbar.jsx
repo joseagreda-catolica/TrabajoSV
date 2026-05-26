@@ -11,44 +11,98 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="navbar">
-      <Link to="/" className="navbar-brand">Portal de Trabajo</Link>
-      <ul className="navbar-links">
-        <li><Link to="/empleos">Empleos</Link></li>
-        <li><Link to="/recursos">Recursos</Link></li>
-        <li><Link to="/comunidad">Comunidad</Link></li>
+    <nav className="navbar navbar-expand-lg navbar-dark ts-navbar sticky-top">
+      <div className="container-fluid px-3">
 
-        {!user && (
-          <>
-            <li><Link to="/login">Iniciar sesión</Link></li>
-            <li><Link to="/registro">Registrarse</Link></li>
-          </>
-        )}
+        <Link className="navbar-brand fw-bold" to="/">TrabajoSV</Link>
 
-        {user?.rol === 'candidato' && (
-          <>
-            <li><Link to="/usuario">Mi perfil</Link></li>
-            <li><Link to="/postulaciones">Postulaciones</Link></li>
-            <li><Link to="/alertas">Alertas</Link></li>
-          </>
-        )}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarMain"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-        {user?.rol === 'empresa' && (
-          <li><Link to="/empresa">Panel empresa</Link></li>
-        )}
+        <div className="collapse navbar-collapse" id="navbarMain">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link" to="/empleos">
+                <i className="bi bi-briefcase me-1"></i>Empleos
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/recursos">
+                <i className="bi bi-book me-1"></i>Recursos
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/comunidad">
+                <i className="bi bi-people me-1"></i>Comunidad
+              </Link>
+            </li>
+          </ul>
 
-        {user?.rol === 'admin' && (
-          <li><Link to="/admin">Admin</Link></li>
-        )}
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-2">
 
-        {user && (
-          <li>
-            <button onClick={handleLogout} className="btn-logout">
-              Cerrar sesión
-            </button>
-          </li>
-        )}
-      </ul>
+            {!user && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">Iniciar sesión</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="btn btn-warning btn-sm fw-semibold px-3" to="/registro">
+                    Registrarse
+                  </Link>
+                </li>
+              </>
+            )}
+
+            {user?.rol === 'candidato' && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/usuario">
+                    <i className="bi bi-person-circle me-1"></i>{user.nombre}
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/postulaciones">Postulaciones</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/alertas">Alertas</Link>
+                </li>
+              </>
+            )}
+
+            {user?.rol === 'empresa' && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/empresa">
+                  <i className="bi bi-building me-1"></i>Mi empresa
+                </Link>
+              </li>
+            )}
+
+            {user?.rol === 'admin' && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/admin">Admin</Link>
+              </li>
+            )}
+
+            {user && (
+              <li className="nav-item">
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-outline-light btn-sm"
+                >
+                  Cerrar sesión
+                </button>
+              </li>
+            )}
+
+          </ul>
+        </div>
+      </div>
     </nav>
   )
 }

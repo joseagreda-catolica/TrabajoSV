@@ -25,9 +25,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <div className="app-layout">
+        <div className="d-flex flex-column min-vh-100">
           <Navbar />
-          <div className="main-content">
+          <div className="flex-grow-1">
             <Routes>
               {/* Públicas */}
               <Route path="/" element={<Home />} />

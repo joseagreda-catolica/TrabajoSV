@@ -88,8 +88,10 @@ router.post('/register', async (req, res) => {
 
     res.status(201).json({ ok: true, message: 'Cuenta creada exitosamente. Inicia sesión' });
   } catch (err) {
-    console.error('Error en registro:', err);
-    res.status(500).json({ ok: false, message: 'Error al crear la cuenta' });
+    console.error('Error en registro:', err.message);
+    console.error('Stack:', err.stack);
+    const message = err.code === 'ER_DUP_ENTRY' ? 'El email ya está registrado' : 'Error al crear la cuenta';
+    res.status(500).json({ ok: false, message });
   }
 });
 

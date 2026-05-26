@@ -28,6 +28,7 @@ export const candidatoAPI = {
 }
 
 export const empresaAPI = {
+  panel:          ()     => api.get('/empresa/panel'),
   perfil:         ()     => api.get('/empresa/perfil'),
   actualizar:     (data) => api.put('/empresa/perfil', data),
   vacantes:       ()     => api.get('/empresa/vacantes'),
@@ -35,6 +36,7 @@ export const empresaAPI = {
   actualizarVacante: (id, data) => api.put(`/empresa/vacantes/${id}`, data),
   eliminarVacante:(id)   => api.delete(`/empresa/vacantes/${id}`),
   postulaciones:  (id)   => api.get(`/empresa/vacantes/${id}/postulaciones`),
+  actualizarPostulacion: (id, estado) => api.put(`/empresa/postulaciones/${id}`, {estado}),
 }
 
 export const forosAPI = {

@@ -134,6 +134,24 @@ router.put('/vacantes/:id', apiAuth, apiRole('empresa'), async (req, res) => {
   }
 });
 
+router.delete('/vacantes/:id', apiAuth, apiRole('empresa'), async (req, res) => {
+  try {
+    const empresa = await Empresa.buscarPorUsuario(req.session.user.id);
+    if (!empresa) return res.status(404).json({ ok: false, message: 'Empresa no encontrada' });
+
+    const vacante = await Vacante.buscarPorId(req.params.id);
+    if (!vacante) return res.status(404).json({ ok: false, message: 'Vacante no encontrada' });
+    if (vacante.id_empresa !== empresa.id_empresa)
+      return res.status(403).json({ ok: false, message: 'Sin permisos para eliminar esta vacante' });
+
+    await Vacante.eliminar(req.params.id);
+    res.json({ ok: true, message: 'Vacante eliminada' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ ok: false, message: 'Error al eliminar vacante' });
+  }
+});
+
 // ── Postulaciones ─────────────────────────────────────────────────────────────
 
 router.get('/vacantes/:id/postulaciones', apiAuth, apiRole('empresa'), async (req, res) => {

@@ -1,7 +1,11 @@
 export default function Footer() {
   return (
-    <footer className="footer">
-      <p>&copy; {new Date().getFullYear()} Portal de Trabajo. Todos los derechos reservados.</p>
+    <footer className="ts-footer py-3 text-center">
+      <div className="container">
+        <p className="mb-0 text-secondary small">
+          &copy; {new Date().getFullYear()} TrabajoSV — Portal de Empleo El Salvador
+        </p>
+      </div>
     </footer>
   )
 }
